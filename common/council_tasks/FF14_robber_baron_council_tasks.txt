@@ -1,6 +1,6 @@
-﻿训练军队_内阁任务 = {
+﻿train_army_council_task = {
 	default_task = yes
-	position = 劫掠首领_内阁职位
+	position = council_robber_baron
 
 	task_type = task_type_general
 	task_progress = task_progress_infinite
@@ -186,20 +186,20 @@
 	}
 }
 
-劫掠_内阁任务 = {
-	position = 劫掠首领_内阁职位
+robber_council_task = {
+	position = council_robber_baron
 
 	task_type = task_type_county
 	county_target = neighbor_land_or_water
 	ai_county_target = neighbor_land_or_water
 	task_progress = task_progress_percentage
-	task_current_value = scope:councillor_liege.劫掠_内阁任务_当前进度
+	task_current_value = scope:councillor_liege.robber_council_task_progress
 	task_max_value = 100 # Highest possible county control
 	highlight_own_realm = no
 	restart_on_finish = yes # If it "finishes" by removing a corruption modifier, there'll still be control to regain
 
 	effect_desc = {
-		desc = 掠夺发展度效果_描述
+		desc = robbor_development_desc
 	}
 	
 	# TOTAL PROGRESS MUST MATCH THE TOTAL OF THE COUNTY MODIFIERS BELOW

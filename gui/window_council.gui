@@ -1454,7 +1454,7 @@ types CouncilTaskTypes
 						widget_councillor_item = {
 							layoutpolicy_horizontal = expanding
 							layoutpolicy_vertical = expanding
-							datacontext = "[CouncilWindow.GetCouncillor('劫掠首领_内阁职位')]"
+							datacontext = "[CouncilWindow.GetCouncillor('council_robber_baron')]"
 							datacontext = "[GuiCouncilPosition.GetActiveCouncilTask]"
 							datacontext = "[ActiveCouncilTask.GetPositionType]"
 							datacontext = "[ActiveCouncilTask.GetCouncillor]"
