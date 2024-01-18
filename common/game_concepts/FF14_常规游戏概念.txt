@@ -1,0 +1,5 @@
+﻿劫掠首领 = {
+	texture = "gfx/interface/icons/message_feed/chancellor_job.dds"
+	parent = councillor	#父级游戏概念为 内阁成员
+	alias = { 劫掠首领们 }
+}

@@ -1,0 +1,60 @@
+﻿name_of_the_task = {
+    default_task = yes                      # 是否为指定职位的默认任务（默认为否，仅适用于具有无限任务进度的task_type_general）
+    position = councillor_chancellor        # 能执行这项任务的职位（职位可在common/council_positions中找到）
+    task_type = task_type_general           # 任务类型 [task_type_general|task_type_county|task_type_court]
+    county_target = all|realm|etc           # 县级任务的目标是什么？对其他任务类型不相关。有效值：all, realm, domain, neighbor_land, neighbor_land_or_water。neighbor_land_or_water仅适用于AI
+    ai_county_target = as above             # AI的县级任务目标是什么？对其他任务类型不相关。如果未设置，默认为你为county_target设置的值。出于性能原因，你可能希望这个更具限制性
+    ai_target_score = { ... }               # 县级目标分数的脚本值。如果未设置，默认为完全随机。作用域与所有其他理事会任务脚本相同。分数为0或以下意味着“不执行此操作”。AI会从所有分数高于0的目标中加权随机选择
+    task_progress = task_progress_infinite  # 任务进度类型 [task_progress_infinite|task_progress_percentage|task_progress_value]
+    task_current_value = script_value       # 使用task_progress_value时，定义当前进度
+    task_max_value = script_value           # 使用task_progress_value时，定义最大进度；即任务完成的点
+    restart_on_finish = no                  # 任务完成后是否自动重启？
+    highlight_own_realm = yes               # 自己领域的县会有与其他领域的县略有不同的颜色
+
+    councillor_modifier = { }   # 执行此任务时应用于顾问的修饰符。可以取“scale”参数按比例缩放（脚本值；参见_script_values.info）。作用域与valid_character相同。如果需要多个缩放因子，可以定义多个
+    council_owner_modifier = { }# 执行此任务时应用于理事会所有者的修饰符。可以取“scale”参数按比例缩放（脚本值；参见_script_values.info）。作用域与valid_character相同。如果需要多个缩放因子，可以定义多个
+    county_modifier = { }      # 在执行此任务的县中应用的修饰符。可以取“scale”参数按比例缩放（脚本值；参见_script_values.info）。作用域与valid_county相同。如果需要多个缩放因子，可以定义多个
+    
+    # 以下中，root是顾问。也保存为scope:councillor，scope:councillor_liege是顾问的领主
+    is_shown = { }             # 检查任务是否对COUNCILLOR角色显示。如果任何时候为false，任务将停止。这个任务将完全不可见。
+    is_valid_showing_failures_only = { } # 检查任务是否对COUNCILLOR角色有效。否则任务将变灰显示原因。
+    on_start_task = { }        # 任务开始时的效果
+    on_finish_task = { }       # 任务完成时的效果
+    on_cancel_task = { }       # 任务取消时的效果
+    on_monthly = { }           # 任务活跃期间每月一次的效果
+    monthly_on_action = key    # 每月将触发一次此on-action。它会延迟1至30天以确保不会持续发生在同一天。使用这个比从on_monthly触发on-action更高效。对于省份和宫廷任务，也会提供这些作用域（如下所述）。任务开始后的前30天或顾问更换后不会触发
+    
+    # 以下中，作用域与valid_targets相同，但增加了scope:province，代表县的首府省份，以及scope:county代表县头衔
+    potential_county = { }     # 检查县作用域是否有效。如果任何时候为false，任务将停止
+    valid_county = { }         # 检查县作用域是否有效
+    on_start_task_county = { } # 任务在县开始时的效果
+    on_finish_task_county = { }# 任务在县完成时的效果
+    on_cancel_task_county = { }# 任务在县取消时的效果
+    on_monthly_county = { }    # 任务在县活跃期间每月一次的效果
+    
+    # 以下中，作用域与valid_targets相同，但增加了scope:target_character，代表被针对的角色
+    potential_target_court = { }# 检查宫廷作用域是否有效。如果任何时候为false，任务将停止
+    valid_target_court = { }   # 检查宫廷作用域是否有效
+    on_start_task_court = { }  # 任务在宫廷开始时的效果
+    on_finish_task_court = { } # 任务在宫廷完成时的效果
+    on_cancel_task_court = { } # 任务在宫廷取消时的效果
+    on_monthly_court = { }     # 任务在宫廷活跃期间每月一次的效果
+    
+    progress = { # 对于task_progress_percentage，其进展速度。作用域是顾问对于全局任务。县级任务的作用域与count效果相同。比率每日应用，按30的因子缩减。尽管每月天数略有不同，但在UI中以每月形式呈现
+    # 对于task_progress_value，可以用来与玩家沟通。也可以使用council_task_monthly_progress在顾问上脚本获取这个值
+        base = 1
+        modifier = {
+            add = 1
+            always = yes
+            desc = some_loc_key
+        }
+    }
+    full_progres = some_script_value/math   # 一些任务仅影响现有进程，例如发展。使用这个获取/计算该任务的完整进度率。对于工具提示和ETA，该值将被用作整体进度。在任务的进度率分解中，该值减去任务本身提供的值将列在COUNCIL_TASK_OTHER_SOURCES条目下。如果使用此功能，请确保实际应用影响进度的所有内容到底层值。例如，对于县控制，确保有应用县控制增益的county_modifier
+    custom_other_loc = some_loc_key         # 此本地化键将替换进度分解中的COUNCIL_TASK_OTHER_SOURCES行
+    
+    effect_desc = { # 效果描述的动态描述。作用域基于任务类型。要添加修饰效果，可以做类似这样的事情 [councillor.GetModifierDescForTask('task_foreign_affairs')]
+    }
+}
+
+== 相关本地化 ==
+任务的键将被用作其名称。

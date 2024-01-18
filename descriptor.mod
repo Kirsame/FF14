@@ -1,0 +1,9 @@
+version="0.1"
+tags={
+	"Historical"
+	"Map"
+	"Religion"
+	"Culture"
+}
+name="FF14"
+supported_version="1.11.*"
