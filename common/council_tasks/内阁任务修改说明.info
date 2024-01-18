@@ -6,7 +6,7 @@
     ai_county_target = as above             # AI的县级任务目标是什么？对其他任务类型不相关。如果未设置，默认为你为county_target设置的值。出于性能原因，你可能希望这个更具限制性
     ai_target_score = { ... }               # 县级目标分数的脚本值。如果未设置，默认为完全随机。作用域与所有其他理事会任务脚本相同。分数为0或以下意味着“不执行此操作”。AI会从所有分数高于0的目标中加权随机选择
     task_progress = task_progress_infinite  # 任务进度类型 [task_progress_infinite|task_progress_percentage|task_progress_value]
-    task_current_value = script_value       # 使用task_progress_value时，定义当前进度
+    task_current_value = script_value       # 使用task_progress_value时，定义progress
     task_max_value = script_value           # 使用task_progress_value时，定义最大进度；即任务完成的点
     restart_on_finish = no                  # 任务完成后是否自动重启？
     highlight_own_realm = yes               # 自己领域的县会有与其他领域的县略有不同的颜色

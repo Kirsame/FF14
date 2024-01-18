@@ -1,4 +1,4 @@
-﻿是否可以成为劫掠首领 = {
+﻿can_be_council_robber_baron = {
 	can_be_councillor_basics_trigger = yes
 	NAND = {
 		has_council_position = councillor_court_chaplain
@@ -17,11 +17,11 @@
 		is_ruler = yes
 		AND = {
 			is_female = yes
-			$内阁所有者$.faith = { NOT = { has_doctrine_parameter = male_dominated_council } }
+			$country_owner$.faith = { NOT = { has_doctrine_parameter = male_dominated_council } }
 		}
 		AND = {
 			is_male = yes
-			$内阁所有者$.faith = { NOT = { has_doctrine_parameter = female_dominated_council } }
+			$country_owner$.faith = { NOT = { has_doctrine_parameter = female_dominated_council } }
 		}
 	}
 }

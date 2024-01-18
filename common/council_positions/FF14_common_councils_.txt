@@ -1,19 +1,19 @@
-﻿劫掠首领_内阁职位 = {
+﻿council_robber_baron = {
 	skill = martial
 	
-	name = 劫掠首领_内阁职位
+	name = council_robber_baron
 
 	tooltip = game_concept_chancellor_desc
 
 	modifier = {
-		name = 劫掠首领_修正
+		name = modifier_robber_baron
 		fellow_vassal_opinion = 5
 		monthly_diplomacy_lifestyle_xp_gain_mult = 0.05
 		scale = council_scaled_by_liege_tier
 	}
 
 	modifier = {
-		name = 劫掠首领_修正
+		name = modifier_robber_baron
 		monthly_prestige = 1
 		scale = council_scaled_monthly_income
 	}
@@ -32,7 +32,7 @@
 
 	valid_character = {
 		exists = root.liege_or_court_owner
-		是否可以成为劫掠首领 = { 内阁所有者 = root.liege_or_court_owner }
+		can_be_council_robber_baron = { country_owner = root.liege_or_court_owner }
 	}
 
 	on_get_position = {
