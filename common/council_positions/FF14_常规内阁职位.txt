@@ -1,0 +1,52 @@
+﻿劫掠首领_内阁职位 = {
+	skill = martial
+	
+	name = 劫掠首领_内阁职位
+
+	tooltip = game_concept_chancellor_desc
+
+	modifier = {
+		name = 劫掠首领_修正
+		fellow_vassal_opinion = 5
+		monthly_diplomacy_lifestyle_xp_gain_mult = 0.05
+		scale = council_scaled_by_liege_tier
+	}
+
+	modifier = {
+		name = 劫掠首领_修正
+		monthly_prestige = 1
+		scale = council_scaled_monthly_income
+	}
+
+	council_owner_modifier = {
+		name = learn_on_the_job_modifier
+		diplomacy = 1
+		scale = chancellor_learn_on_the_job_scale
+	}
+
+	council_owner_modifier = {
+		name = reliable_house_modifier
+		diplomacy = 1
+		scale = chancellor_reliable_house_scale
+	}
+
+	valid_character = {
+		exists = root.liege_or_court_owner
+		是否可以成为劫掠首领 = { 内阁所有者 = root.liege_or_court_owner }
+	}
+
+	on_get_position = {
+		got_council_position_effect = yes
+	}
+
+	on_fired_from_position = {
+		fired_from_council_position_effect = yes
+	}
+
+	portrait_animation = marshal
+
+	barbershop_data = {
+		position = { 918.0 172.0 }
+		click_to_front = no
+	}
+}

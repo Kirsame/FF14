@@ -1,0 +1,66 @@
+﻿== 结构 ==
+
+职位名称 = {	#	职位名称可以使用中文定义
+    skill = diplomacy        # 影响称职度的主要技能
+    auto_fill = yes/no/{ <triggers> } # 会自动填充该职位，无需玩家选择。触发范围：内阁拥有者角色。默认值：否。空触发器视为'否'。
+    inherit = yes/no/{ <triggers> } # 该职位将被主要继承人继承，如果该角色符合担任该职位的条件。触发范围：内阁拥有者角色。默认值：否。空触发器视为'否'。
+    can_fire = yes/no/{ <triggers> } # 可以解雇该顾问。触发范围：内阁拥有者角色。默认值：是。空触发器视为'是'。
+    can_reassign = yes/no/{ <triggers> } # 可以重新分配该顾问。触发范围：内阁拥有者角色。默认值：是。空触发器视为'是'。
+    can_change_once = yes/no/{ <triggers> } # 顾问一旦被分配，便不能在其一生中被重新分配或解雇。触发范围：内阁拥有者角色。默认值：否。空触发器视为'否'。
+
+    name = loc_key # 使用的名称。注意，当一个职位未被填充时，会使用name_of_the_position的名称
+    name = { # 或者，您可以使用触发的本地化。作用域是角色，事件目标'councillor_liege'是内阁的拥有者。如果没有提供角色，我们将回退到职位的键值，而不是通过触发的本地化
+        first_valid = { ... }
+    }
+
+    # 应用于此职位角色的修饰符。可以取“scale”参数按比例缩放（脚本值；参见_script_values.info）。如果需要多于一个比例，则最多可以定义5个
+    modifier = {
+    }
+
+    # 应用于此职位角色的领主的修饰符。可以取“scale”参数按比例缩放（脚本值；参见_script_values.info）。如果需要多于一个比例，则最多可以定义5个
+    council_owner_modifier = {
+    }
+
+    # 判断此职位对于此内阁是否可用 [作用域是内阁的角色拥有者]
+    valid_position = {
+    }
+
+    # 判断此角色是否适合该职位。[作用域是申请该职位的角色]
+    valid_character = {
+    }
+
+    # 当角色获得此职位时应用的效果。[作用域是申请该职位的角色]
+    on_get_position = {
+    }
+
+    # 当角色失去该职位时应用的效果。[作用域是在该职位的角色]
+    on_lose_position = {
+    }
+
+    # 当角色从该职位被解雇时应用的效果。[作用域是在该职位的角色]
+    on_fired_from_position = {
+    }
+
+    use_for_scheme_power = yes/no
+    use_for_scheme_resistance = yes/no
+
+    # 在内阁窗口中，此类顾问应使用的肖像动画
+    portrait_animation = X
+
+    # 在理发店的内阁预设中使用的内阁数据。定义内阁角色的职位，以及它是否应该在其他角色前面渲染。
+    barbershop_data = {
+        position = { ... }
+        click_to_front = yes/no
+    }
+}
+
+
+== 相关本地化 ==
+CHARACTER.GetCouncilTitle                                       - 返回角色的内阁职位。如果没有职位则为空
+CHARACTER.GetCouncilTitlePossessive                             - 以所有格形式返回角色的内阁职位。如果没有职位则为空
+CHARACTER.GetCouncilTitleForPosition('council_position_key', council_owner_character) - 如果角色拥有提供的职位，返回该角色内阁职位的名称
+CHARACTER.GetMyCouncillorsTitle('council_position_key')         - 返回角色的顾问的标题。如果没有顾问则返回默认标题
+COUNCIL_POSITION.GetName                                        - 返回职位的默认名称（本地化的键值）
+COUNCIL_POSITION.GetKey                                         - 返回职位的非本地化键值
+COUNCIL_POSITION.GetPortraitAnimation                           - 返回肖像动画的名称，如果没有则返回默认肖像动画
+
