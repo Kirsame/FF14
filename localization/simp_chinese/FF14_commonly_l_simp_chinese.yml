@@ -1,8 +1,9 @@
 ﻿l_simp_chinese:
-council_robber_baron: "robber_baron"
-game_concept_robber_baron: "robber_baron"
-game_concept_robber_barons: "robber_baron"
+council_robber_baron: "劫掠首领"
+game_concept_robber_baron: "劫掠首领"
+game_concept_robber_barons: "劫掠首领"
 game_concept_robber_baron_desc: "$game_concept_chancellor$是负责[realm|E]杀伐与掠夺事务的[councillor|E]。"
-modifier_robber_baron: "领主的robber_baron"
+modifier_robber_baron: "领主的劫掠首领"
 train_army_council_task: "训练军队"
 robbor_development_desc: "目标伯爵领的发展度会被降低，而你的首都发展度会提升。"
+robber_council_task: "劫掠"

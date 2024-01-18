@@ -1,0 +1,52 @@
+The structure is identical to cultural traits in general, except for a few added fields:
+
+
+This is used for grouping in the Add Tradition view, and in the Divergence view.
+
+
+
+
+Example:
+
+dummy_tradition = {		# 传统的id
+
+	category = combat	# 传统的类别
+
+	layers = {
+		0 = martial # 从特定子文件夹中随机使用一个图标
+		1 = blah    # 通过省略索引，它将从文件夹中随机使用一个图标
+		3 = letter1.dds # 通过指定文件名，将使用特定的文件
+	}
+	# 图层与CULTURE_TRADITION_LAYER_PATHS定义相匹配。索引从0开始
+	# 有多少个图层，它们在哪里？
+	#CULTURE_TRADITION_LAYER_PATHS = {
+	#    "gfx/interface/icons/culture_tradition/0-background"
+	#    "gfx/interface/icons/culture_tradition/1-pattern"
+	#    "gfx/interface/icons/culture_tradition/2-support"
+	#    "gfx/interface/icons/culture_tradition/3-stroke"
+	#    "gfx/interface/icons/culture_tradition/4-items"
+	#}
+	
+	can_pick = {}	#满足以下条件才能选择这个传统	根作用域是角色的文化
+
+	parameters = {		# 传统的参数  你可以理解为传统的属性 所有在这边写过的必须要在其他文件里面实现才有意义  
+		can_raid = yes
+		#示例:
+		#可以抢劫 = yes # 这样我们就给这个传统添加了一个属性 表示它可以抢劫 
+		#				 但是光在这里写没有什么效果，你必须在其他文件里面实现抢劫的效果才有意义
+		#				 比如说，你在新建一个互动，检测有没有这个角色的传统有没有这个属性，如果有就可以抢劫，没有就不能抢劫
+		#				 这样，这个属性就有了实际意义。  而且这样这个属性也能方便的用到其他传统中  只需要在其他传统中写上  可以抢劫 = yes
+		#				 以这个属性为例子，文化的parameters内定义的属性的本地化键为  culture_parameter_可以抢劫
+	}
+
+	character_modifier = {}	# 所有拥有这个传统的角色都会获得以下修正
+
+	county_modifier = {}	# 所有拥有这个传统的伯爵领都会获得以下修正
+
+	province_modifier = {}	# 所有拥有这个传统的省份都会获得以下修正	省份在游戏中的是一个很特殊的概念，游戏内似乎没有直接提到它，你可以理解为它是土地本身
+	
+
+	doctrine_character_modifier = {		# 拥有这个教义的角色会获得以下修正
+		doctrine = doctrine_pluralism_righteous	# 用于确定哪个教义会获得这个修正
+	}
+}
